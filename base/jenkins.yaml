@@ -5,3 +5,13 @@ jenkins:
   markupFormatter:
     rawHtml:
       disableSyntaxHighlighting: false
+
+unclassified:
+  # Apply new bundle versions pushed to Git automatically (reload, no restart).
+  # Inherited by every child bundle, e.g. demo-controller.
+  bundleUpdateTiming:
+    automaticReload: true
+    automaticRestart: false
+    rejectWarnings: false
+    reloadAlwaysOnRestart: false
+    skipNewVersions: false

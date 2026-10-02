@@ -1,5 +1,5 @@
 jenkins:
-  systemMessage: "Configured by the 'base' CasC bundle"
+  # systemMessage is set by child bundles (two bundles defining the same key = conflict)
   numExecutors: 0
   quietPeriod: 0
   markupFormatter:

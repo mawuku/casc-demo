@@ -1,13 +1,15 @@
 apiVersion: "1"
 id: "demo-controller"
 description: "Demo controller bundle - inherits from 'base'"
-version: "6"          # bump on every change so the controller detects the update
+version: "7"          # bump on every change so the controller detects the update
 parent: "base"
 jcasc:
   - "jenkins.yaml"
   - "pipeline-demo-jenkins.yaml"     # pipeline best-practices demo: template catalog, discarder, explorer
 plugins:
   - "pipeline-demo-plugins.yaml"     # pipeline best-practices demo (needs a controller restart)
+catalog:
+  - "pipeline-demo-plugin-catalog.yaml"   # allows non-CAP pipeline-utility-steps
 items:
   - "items.yaml"
   - "pipeline-demo-items.yaml"       # pipeline best-practices demo jobs

@@ -1,0 +1,13 @@
+# Non-CAP (community) plugins for the pipeline best-practices demo.
+# A plugin catalog only *allows* a plugin; it is installed because it is also listed in
+# pipeline-demo-plugins.yaml. Transitive dependencies outside CAP must be added here too -
+# the OC's bundle validation lists any that are missing.
+type: "plugin-catalog"
+version: "1"
+name: "pipeline-demo-catalog"
+displayName: "Pipeline best-practices demo - community plugins"
+configurations:
+  - description: "readYaml for the pipeline-training shared library"
+    includePlugins:
+      pipeline-utility-steps:
+        version: "3.810.va_7672d206740"   # latest at time of writing; requires Jenkins 2.504.3+

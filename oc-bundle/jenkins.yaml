@@ -33,5 +33,27 @@ masterprovisioning:
 unclassified:
   location:
     url: "${ocUrl}"
-  # Controller bundle location (Git) is added in step 2 of the README "Git bundle location"
-  # section, once the git plugin from plugins.yaml is installed on the OC.
+  # Controller bundles (base, demo-controller) are pulled from this same Git repository.
+  # Syntax taken from this OC's own CasC export (note: 'bundles' list and 'gitSource').
+  bundleStorageService:
+    activated: true
+    bundles:
+      - name: "SCM"
+        retriever:
+          SCM:
+            ghChecksActivated: false
+            scmSource:
+              gitSource:
+                remote: "${cascRepoUrl}"
+                traits:
+                  - "gitBranchDiscovery"
+    checkOutTimeout: 600
+    pollingPeriod: 60
+    purgeOnDeactivation: false
+  # New bundle versions pushed to Git are applied automatically (reload, no restart)
+  bundleUpdateTiming:
+    automaticReload: true
+    automaticRestart: false
+    rejectWarnings: false
+    reloadAlwaysOnRestart: false
+    skipNewVersions: false

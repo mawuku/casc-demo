@@ -1,7 +1,7 @@
 apiVersion: "1"
 id: "oc-bundle"
 description: "Operations center for the CloudBees CI CasC demo (retrieved from Git)"
-version: "3"          # bump on every change so the OC detects the new bundle
+version: "4"          # bump on every change so the OC detects the new bundle
 jcasc:
   - "jenkins.yaml"
 plugins:

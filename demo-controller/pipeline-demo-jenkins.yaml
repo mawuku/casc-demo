@@ -1,0 +1,34 @@
+# Pipeline best-practices demo - controller settings
+# Adapted from pipeline-training-ws/demo-jobs-casc/jenkins.yaml for anonymous GitHub access:
+#  - no credentials (gh-app / gh-pat) - all repos are public
+#  - template catalog read with plain Git (no GitHub API calls -> no rate-limit pressure)
+#  - securityRealm / authorizationStrategy / RBAC left to the OC (RBAC segment skipped)
+#  - numExecutors / systemMessage omitted (already set by base / demo-controller)
+globalCloudBeesPipelineTemplateCatalog:
+  catalogs:
+    - branchOrTag: "main"
+      parentName: "/"
+      scm:
+        git:
+          id: "pipeline-training-template-catalog"
+          remote: "https://github.com/pipeline-training-ws/template-catalog.git"
+      updateInterval: "1d"
+
+unclassified:
+  # Global build discarder: honour per-job settings first, otherwise keep the last 2 builds
+  buildDiscarders:
+    configuredBuildDiscarders:
+      - "jobBuildDiscarder"
+      - simpleBuildDiscarder:
+          discarder:
+            logRotator:
+              numToKeepStr: "2"
+  cloudbeesPipelineExplorer:
+    autoPollingEnabled: true
+    autoPollingIntervalSeconds: 5
+    enabled: true
+    pluggableStorageEnabled: false
+    searchMaxIndexSize: 1000
+  # Anonymous GitHub API = 60 requests/hour: wait instead of failing when close to the limit
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize

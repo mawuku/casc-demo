@@ -1,0 +1,10 @@
+plugins:
+  # Pipeline best-practices demo (adapted from pipeline-training-ws/demo-jobs-casc).
+  # Only plugins not already provided by the parent bundle 'base'.
+  - id: "workflow-aggregator"                 # Declarative + Scripted Pipeline
+  - id: "github-branch-source"                # Multibranch / Organization Folder on GitHub
+  - id: "cloudbees-build-strategies-plugin"   # skipInitialBuildOnFirstIndexingResetRevision
+  - id: "cloudbees-workflow-template"         # Pipeline Template Catalogs + custom marker files
+  - id: "pipeline-utility-steps"              # readYaml (used by the shared library)
+  - id: "workflow-cps-checkpoint"             # checkpoint step (08-checkpoints)
+  - id: "pipeline-event-step"                 # publishEvent / eventTrigger (07-crossteam-collaboration-events)

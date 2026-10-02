@@ -1,4 +1,10 @@
 plugins:
+  # CasC support on controllers: bundle update/reload (bundleUpdateTiming) and items.yaml
+  - id: "cloudbees-casc-client"
+  - id: "cloudbees-casc-items-api"
+  - id: "cloudbees-casc-items-commons"
+  - id: "cloudbees-casc-items-controller"   # controllers only - not for the OC
+  # Demo content
   - id: "cloudbees-pipeline-explorer"
   - id: "pipeline-model-definition"
   - id: "git"

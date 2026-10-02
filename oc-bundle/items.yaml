@@ -9,7 +9,7 @@ items:
     description: "Managed controller created and configured entirely by CasC"
     properties:
       - configurationAsCode:
-          bundle: "demo-controller"
+          bundle: "main/demo-controller"   # SCM bundle names are <branch>/<folder>
       - healthReporting:
           enabled: true
     configuration:

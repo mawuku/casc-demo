@@ -1,3 +1,8 @@
 plugins:
+  # CasC export/update UI, items.yaml support (managedController items) on the OC
+  - id: "cloudbees-casc-client"
+  - id: "cloudbees-casc-items-api"
+  - id: "cloudbees-casc-items-commons"
+  - id: "cloudbees-casc-items-server"
   # Required by the SCM "Configuration as Code bundle location" (bundleStorageService)
   - id: "git"

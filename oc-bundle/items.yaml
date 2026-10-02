@@ -1,0 +1,20 @@
+removeStrategy:
+  items: "none"
+  rbac: "sync"
+
+items:
+  - kind: managedController
+    name: "demo-controller"
+    displayName: "Demo Controller"
+    description: "Managed controller created and configured entirely by CasC"
+    properties:
+      - configurationAsCode:
+          bundle: "demo-controller"
+      - healthReporting:
+          enabled: true
+    configuration:
+      kubernetes:
+        memory: 3072
+        cpus: 1.0
+        disk: 10
+        domain: "demo-controller"

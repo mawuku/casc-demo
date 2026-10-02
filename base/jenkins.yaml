@@ -1,0 +1,7 @@
+jenkins:
+  systemMessage: "Configured by the 'base' CasC bundle"
+  numExecutors: 0
+  quietPeriod: 0
+  markupFormatter:
+    rawHtml:
+      disableSyntaxHighlighting: false

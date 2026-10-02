@@ -1,0 +1,50 @@
+# NOTE: this file lives in a PUBLIC repository. Never put secrets here.
+# ${adminPassword}, ${ocUrl} and ${cascRepoUrl} are resolved from the Kubernetes Secret
+# oc-casc-secrets, mounted into the OC pod (see helm/values.yaml.tpl).
+jenkins:
+  systemMessage: "Operations center configured by CloudBees Configuration as Code (oc-bundle, from Git)"
+  numExecutors: 0
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "admin"
+          name: "Demo Admin"
+          password: "${adminPassword}"
+  authorizationStrategy:
+    loggedInUsersCanDoAnything:
+      allowAnonymousRead: false
+
+security:
+  controllerExecutorCount:
+    enforce:
+      canOverride: false
+      count: 0
+
+cloudBeesCasCServer:
+  visibility: true
+
+masterprovisioning:
+  kubernetes:
+    cpus: "1"
+    memory: 3072
+    disk: 10
+
+unclassified:
+  location:
+    url: "${ocUrl}"
+  # Controller bundles (base, demo-controller) are pulled from the same Git repository.
+  bundleStorageService:
+    activated: true
+    activeBundle:
+      name: "casc-demo-repo"
+      retriever:
+        SCM:
+          scmSource:
+            git:
+              id: "casc-demo-repo"
+              remote: "${cascRepoUrl}"
+              traits:
+                - "gitBranchDiscovery"
+    pollingPeriod: 60
+    purgeOnDeactivation: false

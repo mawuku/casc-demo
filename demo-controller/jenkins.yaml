@@ -1,0 +1,2 @@
+jenkins:
+  systemMessage: "<h3>${teamName}</h3>Controller configured by CasC bundle <b>demo-controller</b> (${bundleRevision}), inheriting from <b>base</b>."

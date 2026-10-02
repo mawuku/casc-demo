@@ -33,18 +33,5 @@ masterprovisioning:
 unclassified:
   location:
     url: "${ocUrl}"
-  # Controller bundles (base, demo-controller) are pulled from the same Git repository.
-  bundleStorageService:
-    activated: true
-    activeBundle:
-      name: "casc-demo-repo"
-      retriever:
-        SCM:
-          scmSource:
-            git:
-              id: "casc-demo-repo"
-              remote: "${cascRepoUrl}"
-              traits:
-                - "gitBranchDiscovery"
-    pollingPeriod: 60
-    purgeOnDeactivation: false
+  # Controller bundle location (Git) is added in step 2 of the README "Git bundle location"
+  # section, once the git plugin from plugins.yaml is installed on the OC.

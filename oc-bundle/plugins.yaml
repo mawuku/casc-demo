@@ -1,0 +1,3 @@
+plugins:
+  # Required by the SCM "Configuration as Code bundle location" (bundleStorageService)
+  - id: "git"

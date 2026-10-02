@@ -33,6 +33,14 @@ masterprovisioning:
 unclassified:
   location:
     url: "${ocUrl}"
+  # Provision managed controllers automatically when items.yaml creates them
+  # (matches the UI settings: proceed without waiting, delay 15s, duration 60s, timeout 600s)
+  cascAutoControllerProvisioning:
+    provisionControllerOnCreation: true
+    fireAndForget: true
+    initialDelay: 15
+    duration: 60
+    timeout: 600
   # Controller bundles (base, demo-controller) are pulled from this same Git repository.
   # Syntax taken from this OC's own CasC export (note: 'bundles' list and 'gitSource').
   bundleStorageService:

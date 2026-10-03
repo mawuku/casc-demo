@@ -97,14 +97,6 @@ items:
               trust:
                 gitHubTrustPermissions: {}
               strategyId: 2
-          - cloudBeesSCMReporting:
-              visibleLinesOnly: false
-              handlers:
-              - endBuildError:
-                  maxLogLines: 100
-              - stage:
-                  verbosity:
-                    all: {}
           repoOwner: mawuku-pipeline-training-ws
           credentialsId: gh-app
           id: '1'
@@ -159,14 +151,6 @@ items:
               trust:
                 gitHubTrustPermissions: {}
               strategyId: 2
-          - cloudBeesSCMReporting:
-              visibleLinesOnly: false
-              handlers:
-              - endBuildError:
-                  maxLogLines: 100
-              - stage:
-                  verbosity:
-                    all: {}
           repoOwner: mawuku-pipeline-training-ws
           credentialsId: gh-app
           id: '1'
@@ -196,14 +180,6 @@ items:
           trust:
             gitHubTrustPermissions: {}
           strategyId: 2
-      - cloudBeesSCMReporting:
-          visibleLinesOnly: false
-          handlers:
-          - endBuildError:
-              maxLogLines: 100
-          - stage:
-              verbosity:
-                all: {}
       repoOwner: mawuku-pipeline-training-ws
       credentialsId: gh-app
   orphanedItemStrategy:

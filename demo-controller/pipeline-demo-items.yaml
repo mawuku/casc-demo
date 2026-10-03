@@ -1,7 +1,7 @@
 # Pipeline best-practices demo jobs
 # Adapted from pipeline-training-ws/demo-jobs-casc/items.yaml:
-#  - credentialsId gh-app / gh-pat removed (anonymous access to the public repos)
-#  - cloudBeesSCMReporting (GitHub Checks) traits removed - they need a GitHub App
+#  - GitHub sources use org 'mawuku-pipeline-training-ws' + GitHub App credential gh-app (enable-github-app.sh)
+#  - template-catalog read from mawuku-pipeline-training-ws; shared-library via the Jenkinsfile defaults (rewritten to mawuku-pipeline-training-ws)
 #  - RBAC-Folder-dev1-only removed (RBAC segment skipped)
 #  - 05-PTC-job-MB moved to pipeline-demo-items-ptc.yaml (added live, after the catalog has synced)
 # Pod specs keep nodeSelector/tolerations 'workload: agent' - the EKS nodes carry that label.
@@ -42,7 +42,7 @@ items:
         scmGit:
           userRemoteConfigs:
           - userRemoteConfig:
-              url: https://github.com/pipeline-training-ws/sample-app-helloworld.git
+              url: https://github.com/mawuku-pipeline-training-ws/sample-app-helloworld.git
           branches:
           - branchSpec:
               name: '*/main'
@@ -61,6 +61,10 @@ items:
           numToKeep: 5
   - durabilityHint:
       hint: PERFORMANCE_OPTIMIZED
+  # Build on GitHub push webhooks ("GitHub hook trigger for GITScm polling")
+  - pipelineTriggers:
+      triggers:
+      - githubPush: {}
   resumeBlocked: false
 - kind: multibranch
   name: 02-MultiBranchJob-HelloWorld
@@ -93,11 +97,20 @@ items:
               trust:
                 gitHubTrustPermissions: {}
               strategyId: 2
-          repoOwner: pipeline-training-ws
+          - cloudBeesSCMReporting:
+              visibleLinesOnly: false
+              handlers:
+              - endBuildError:
+                  maxLogLines: 100
+              - stage:
+                  verbosity:
+                    all: {}
+          repoOwner: mawuku-pipeline-training-ws
+          credentialsId: gh-app
           id: '1'
           repository: sample-app-helloworld
           configuredByUrl: true
-          repositoryUrl: https://github.com/pipeline-training-ws/sample-app-helloworld.git
+          repositoryUrl: https://github.com/mawuku-pipeline-training-ws/sample-app-helloworld.git
       strategy:
         allBranchesSame: {}
   trigger:
@@ -123,7 +136,7 @@ items:
             scmGit:
               userRemoteConfigs:
               - userRemoteConfig:
-                  url: https://github.com/pipeline-training-ws/template-catalog.git
+                  url: https://github.com/mawuku-pipeline-training-ws/template-catalog.git
               branches:
               - branchSpec:
                   name: '*/main'
@@ -146,11 +159,20 @@ items:
               trust:
                 gitHubTrustPermissions: {}
               strategyId: 2
-          repoOwner: pipeline-training-ws
+          - cloudBeesSCMReporting:
+              visibleLinesOnly: false
+              handlers:
+              - endBuildError:
+                  maxLogLines: 100
+              - stage:
+                  verbosity:
+                    all: {}
+          repoOwner: mawuku-pipeline-training-ws
+          credentialsId: gh-app
           id: '1'
           repository: sample-app-helloworld
           configuredByUrl: true
-          repositoryUrl: https://github.com/pipeline-training-ws/sample-app-helloworld.git
+          repositoryUrl: https://github.com/mawuku-pipeline-training-ws/sample-app-helloworld.git
       strategy:
         allBranchesSame: {}
   trigger:
@@ -174,7 +196,16 @@ items:
           trust:
             gitHubTrustPermissions: {}
           strategyId: 2
-      repoOwner: pipeline-training-ws
+      - cloudBeesSCMReporting:
+          visibleLinesOnly: false
+          handlers:
+          - endBuildError:
+              maxLogLines: 100
+          - stage:
+              verbosity:
+                all: {}
+      repoOwner: mawuku-pipeline-training-ws
+      credentialsId: gh-app
   orphanedItemStrategy:
     defaultOrphanedItemStrategy:
       pruneDeadBranches: true
@@ -193,7 +224,7 @@ items:
                 scmGit:
                   userRemoteConfigs:
                   - userRemoteConfig:
-                      url: https://github.com/pipeline-training-ws/template-catalog.git
+                      url: https://github.com/mawuku-pipeline-training-ws/template-catalog.git
                   branches:
                   - branchSpec:
                       name: '*/main'

@@ -18,3 +18,23 @@ items:
         cpus: 1.0
         disk: 10
         domain: "demo-controller"
+        # Mount the GitHub App Secret; CasC resolves ${GITHUB_APP_ID} etc. from files in $SECRETS
+        yaml: |-
+          apiVersion: apps/v1
+          kind: StatefulSet
+          spec:
+            template:
+              spec:
+                containers:
+                - name: jenkins
+                  env:
+                  - name: SECRETS
+                    value: /var/jenkins_casc_secrets
+                  volumeMounts:
+                  - name: github-app
+                    mountPath: /var/jenkins_casc_secrets
+                    readOnly: true
+                volumes:
+                - name: github-app
+                  secret:
+                    secretName: demo-controller-github-app

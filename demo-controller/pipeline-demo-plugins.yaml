@@ -8,3 +8,4 @@ plugins:
   - id: "pipeline-utility-steps"              # readYaml (used by the shared library)
   - id: "workflow-cps-checkpoint"             # checkpoint step (08-checkpoints)
   - id: "pipeline-event-step"                 # publishEvent / eventTrigger (07-crossteam-collaboration-events)
+  - id: "cloudbees-github-reporting"        # GitHub Checks (cloudBeesSCMReporting trait)

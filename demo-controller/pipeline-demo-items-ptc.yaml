@@ -14,11 +14,11 @@ items:
   model: Pipeline-Tem.c3qk18.log-Examples/1-helloWorld-MB
   attributes:
   - type: CREDENTIALS
-    value: gh-app      # no such credential here -> GitHub is accessed anonymously (public repo)
+    value: gh-app      # GitHub App credential
     key: githubToken
   - type: string
     value: sample-app-helloWorld
     key: repoName
   - type: string
-    value: pipeline-training-ws
+    value: mawuku-pipeline-training-ws
     key: organisation

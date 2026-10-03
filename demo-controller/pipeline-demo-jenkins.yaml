@@ -11,7 +11,7 @@ globalCloudBeesPipelineTemplateCatalog:
       scm:
         git:
           id: "pipeline-training-template-catalog"
-          remote: "https://github.com/pipeline-training-ws/template-catalog.git"
+          remote: "https://github.com/mawuku-pipeline-training-ws/template-catalog.git"
       updateInterval: "1d"
 
 unclassified:

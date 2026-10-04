@@ -1,5 +1,6 @@
 removeStrategy:
-  items: "none"
+  # sync = top-level jobs/folders not declared in this bundle's items files are DELETED on the next apply
+  items: "sync"
   rbac: "sync"
 
 items:
@@ -41,40 +42,3 @@ items:
                   }
                 }
               }
-  - kind: pipeline
-    name: "pipeline-from-casc-demo"
-    displayName: "Pipeline from CasC demo"
-    description: "Created by CasC; runs on an ephemeral Kubernetes agent pod"
-    definition:
-      cpsFlowDefinition:
-        sandbox: true
-        script: |
-          pipeline {
-            agent {
-              kubernetes {
-                yaml '''
-          apiVersion: v1
-          kind: Pod
-          spec:
-            containers:
-            - name: shell
-              image: public.ecr.aws/docker/library/busybox:1.36
-              command: ["sleep"]
-              args: ["infinity"]
-          '''
-                defaultContainer 'shell'
-              }
-            }
-            options {
-              timeout(time: 10, unit: 'MINUTES')
-              buildDiscarder(logRotator(numToKeepStr: '10'))
-            }
-            stages {
-              stage('Hello') {
-                steps {
-                  echo "This job was defined in the demo-controller CasC bundle"
-                  sh 'echo "Running on: $NODE_NAME"; hostname'
-                }
-              }
-            }
-          }

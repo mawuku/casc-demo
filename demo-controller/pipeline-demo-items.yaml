@@ -6,7 +6,8 @@
 #  - 05-PTC-job-MB moved to pipeline-demo-items-ptc.yaml (added live, after the catalog has synced)
 # Pod specs keep nodeSelector/tolerations 'workload: agent' - the EKS nodes carry that label.
 removeStrategy:          # required in every items file of a bundle
-  items: "none"
+  # sync = top-level jobs/folders not declared in this bundle's items files are DELETED on the next apply
+  items: "sync"
   rbac: "sync"
 
 items:

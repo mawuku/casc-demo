@@ -38,3 +38,20 @@ items:
                 - name: github-app
                   secret:
                     secretName: demo-controller-github-app
+  # Quick test of cascAutoControllerProvisioning: created by CasC, started automatically by the OC.
+  # Uses the 'base' bundle only (demo-controller's bundle needs the GitHub App Secret mount).
+  - kind: managedController
+    name: "test-controller"
+    displayName: "Test Controller"
+    description: "Auto-provisioning test - safe to delete"
+    properties:
+      - configurationAsCode:
+          bundle: "main/base"
+      - healthReporting:
+          enabled: true
+    configuration:
+      kubernetes:
+        memory: 3072
+        cpus: 1.0
+        disk: 10
+        domain: "test-controller"
